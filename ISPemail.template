@@ -1,0 +1,14 @@
+to: $to
+from: john.smith@example.com
+cc: john.smith@example.com
+subject: SSH brute-force attacks detected from your network
+Hello,
+
+A few minutes ago an SSH brute-force attack has been conducted from address $IP on one of my servers. On the following lines  you can see the log entries which have led to this automated email:
+
+$log
+
+I hope that this report will help you take the appropriate measures.
+
+Best regards,
+John Smith

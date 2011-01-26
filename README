@@ -1,0 +1,30 @@
+This script allows you to automatically ban IPs from which your SSH server
+receives incorrect login requests (typically brute-force attempts). The IPs
+are kept in a file for further reference and each time a new IP is identified
+the script will try to notify the ISP by sending an automated email (if sendmail
+or any of its replacements that provide a similar interface are available - e.g.
+Postfix).
+
+1. Dependencies
+Dependencies for sending emails: any MTA which provides a sendmail interface.
+
+2. Configuration
+For a list of configuration parameters check the script's content.
+
+To make the script run automatically, use a cron job similar to the following:
+	# this will run the script every 5 minutes
+	*/5 * * * * ~/bin/SSHBruteForceLogger.sh
+	
+If you would also like to have a log with the script's output, modify the cron
+job like this:
+	*/5 * * * * ~/bin/SSHBruteForceLogger.sh >> ~/bin/SSH-scanner.log
+	
+SSH-scanner.log should be a different file than the one specified inside the
+script, in the $logfile parameter (that would be the log file where the sshd
+daemon writes its entries) or in the $iplist one (that file is the file where
+all the attacker's IPs are kept for future reference).
+
+3. Tips and tricks
+If you would like to permanently ban the gathered IP addresses from which the
+script has discovered illegal login attempts, then at every boot you would have
+to run a script that DROPs all traffic from each IP in the list using iptables.
