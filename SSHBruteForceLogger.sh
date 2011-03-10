@@ -57,7 +57,7 @@ createEmailMessage() {
 }
 
 touch $iplist
- GET ALL ATTACKS
+# GET ALL ATTACKS
 cat $logfile | grep sshd | grep "Invalid user" | awk 'BEGIN { FS=":" } ; {print $4}' | awk '{print $5}' > all
 # SORT THEM
 cat all | sort -u -n > uniques
